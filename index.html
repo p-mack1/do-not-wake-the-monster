@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do Not Wake The Monster</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <main class="game">
+        <header class="game-header">
+            <div>
+                <h1>DO NOT WAKE THE MONSTER</h1>
+                <p id="message">Find the key and escape quietly.</p>
+            </div>
+
+            <div class="meter-area">
+                <span>WAKE METER</span>
+                <div class="meter">
+                    <div class="meter-fill" id="meterFill"></div>
+                </div>
+                <strong id="wakeText">0%</strong>
+            </div>
+        </header>
+
+        <section class="room" id="room">
+            <div class="hiding-place">
+                <span>CURTAIN</span>
+            </div>
+
+            <div class="monster-area">
+                <div class="sleep-text" id="sleepText">Z z z</div>
+                <div class="monster" id="monster">
+                    <div class="monster-eye left-eye"></div>
+                    <div class="monster-eye right-eye"></div>
+                    <div class="monster-mouth"></div>
+                </div>
+                <p>THE MONSTER</p>
+            </div>
+
+            <div class="exit-area">
+                <div class="key" id="key">KEY</div>
+                <div class="door" id="door">EXIT</div>
+            </div>
+        </section>
+
+        <section class="status">
+            <span id="keyStatus">KEY: NOT FOUND</span>
+            <span id="hideStatus">HIDDEN: NO</span>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
