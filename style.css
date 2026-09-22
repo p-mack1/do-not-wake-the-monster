@@ -42,6 +42,32 @@ button {
     background-color: #171721;
 }
 
+.room.snoring {
+    animation: floorShakes 2.8s infinite;
+}
+
+@keyframes floorShakes {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+
+    20% {
+        transform: translate(-1px, 1px);
+    }
+
+    40% {
+        transform: translate(1px, -1px);
+    }
+
+    60% {
+        transform: translate(-1px, 0);
+    }
+
+    80% {
+        transform: translate(1px, 1px);
+    }
+}
+
 .hiding-place, .monster-area, .exit-area {
     min-height: 300px;
     padding: 15px;
@@ -50,15 +76,15 @@ button {
 }
 
 .hiding-place {
-    background-color: #242033;
+    background-color: #263a58;
 }
 
 .monster-area {
-    background-color: #181818;
+    background-color: #172536;
 }
 
 .exit-area {
-    background-color: #202a22;
+    background-color: #193b3c;
 }
 
 .monster {
@@ -66,17 +92,23 @@ button {
     width: 170px;
     height: 150px;
     margin: 55px auto 15px;
-    border-radius: 45% 45% 35% 35%;
-    background-color: #596b3a;
-    border: 4px solid #82965b;
+    border-radius: 52% 48% 30% 30%;
+    background-color: #4d806d;
+    border: 4px solid #9bc5a5;
+    box-shadow: 0 12px 0 #2a4c4c, 0 16px 22px rgba(0, 0, 0, 0.35);
 }
 
 .monster-eye {
     position: absolute;
     top: 48px;
-    width: 32px;
-    height: 8px; background-color: #111;
-    border-radius: 50%;
+    width: 36px;
+    height: 12px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 4px solid #10202b;
+    border-radius: 0 0 50% 50%;
+    box-shadow: none;
+    transition: height 0.4s ease, background-color 0.4s ease, border 0.4s ease;
 }
 
 .left-eye {
@@ -89,11 +121,11 @@ button {
 
 .monster-mouth { 
     position: absolute;
-    left: 55px;
-    bottom: 28px;
-    width: 55px;
-    height: 10px;
-    border-bottom: 4px solid #111;
+    left: 73px;
+    bottom: 26px;
+    width: 24px;
+    height: 15px;
+    border: 4px solid #10202b;
     border-radius: 50%;
 }
 
@@ -112,7 +144,7 @@ button {
 
 .hiding-place span {
     padding: 15px;
-    background-color: #4b315e;
+    background-color: #313f5e;
 }
 
 .exit-area {
@@ -129,11 +161,41 @@ button {
 }
 
 .door {
-    width: 110px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
     height: 180px;
-    padding: 70px;
-    border: 4px solid #654321;
-    background-color: #342419;
+    padding: 0;
+    border: 5px solid #654321;
+    border-radius: 58px 58px 0 0;
+    background: linear-gradient(90deg, #241817, #563523 45%, #342419 100%);
+    box-shadow: inset 0 0 0 8px #241817, inset 0 0 0 11px #7b5431;
+    color: #f3c66a;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.door::before {
+    content: "";
+    position: absolute;
+    inset: 26px 18px 18px;
+    border: 2px solid rgba(193, 137, 76, 0.65);
+    border-radius: 34px 34px 0 0;
+    pointer-events: none;
+}
+
+.door::after {
+    content: "";
+    position: absolute;
+    right: 13px;
+    top: 92px;
+    width: 9px;
+    height: 9px;
+    border: 2px solid #f3c66a;
+    border-radius: 50%;
+    background-color: #8d5d2f;
 }
 
 .status {
@@ -154,12 +216,147 @@ button {
 
 .controls button {
      padding: 12px 16px;
-     border: 2px solid #777;
-     background-color: #222;
-     color: white;
+    border: 2px solid #73b7b0;
+     border-radius: 6px;
+     background-color: #173d4a;
+     color: #e9ffff;
      cursor: pointer;
+     box-shadow: 0 3px 0 #0b222d;
 }
 
 .controls button:hover {
-    background-color: #333;
+    background-color: #27616a;
+    transform: translateY(-2px);
+}
+
+.meter-area {
+    text-align: center;
+}
+
+.meter {
+    height: 24px;
+    margin: 8px 0;
+    overflow: hidden;
+    border: 2px solid #777;
+    background-color: #222;
+}
+
+.meter-fill {
+    width: 0%;
+    height: 100%;
+    background-color: #b86b39;
+}
+
+@keyframes restless {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes angry {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes almostAwake {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+}
+
+.restless {
+    animation: restless 0.5s infinite;
+}
+
+.restless .monster-eye {
+    height: 15px;
+    background-color: #b6a85f;
+}
+
+.angry {
+    animation: angry 0.25s infinite;
+}
+
+.angry .monster-eye {
+    height: 18px;
+    background-color: #d45b4d;
+    border: 3px solid #10202b;
+    border-radius: 50%;
+}
+
+.almost-awake {
+    animation: almostAwake 0.3s infinite;
+}
+
+.almost-awake .monster-eye {
+    height: 22px;
+    background-color: #e07a55;
+    border: 3px solid #10202b;
+    border-radius: 50%;
+}
+
+.key {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.key.collected {
+    transform: translateY(-30px) scale(0.5);
+    opacity: 0;
+}
+
+@keyframes wakeUp {
+    0% {
+        transform: scale (1);
+    }
+
+    50% {
+        transform: scale(1.25) rotate(-5deg);
+    }
+
+    100% {
+        transform: scale(1.4) rotate(5deg);
+    }
+}
+
+.awake {
+    animation: wakeUp 0.35s infinite alternate !important;
+}
+
+.awake .monster-eye {
+    height: 25px;
+    background-color: red;
+    border: 3px solid #10202b;
+    border-radius: 50%;
+}
+
+.door {
+    transition: transform 0.7s ease;
+    transform-origin: left center;
+}
+
+.open-door {
+    transform: perspective(500px) rotateY(-65deg);
+}
+
+@keyframes victoryPulse {
+    0%, 100% {
+        outline: 2px solid rgba(115, 183, 176, 0);
+        outline-offset: 0;
+    }
+
+    50% {
+        outline: 5px solid rgba(115, 183, 176, 0.9);
+        outline-offset: 7px;
+    }
+}
+
+.game.victory {
+    animation: victoryPulse 1.2s ease-in-out 2;
+}
+
+.controls button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
 }
