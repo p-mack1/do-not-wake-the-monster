@@ -108,7 +108,7 @@ button {
     border-bottom: 4px solid #10202b;
     border-radius: 0 0 50% 50%;
     box-shadow: none;
-    transition: height 0.4s ease, background-color 0.4s ease, border 0.4s ease;
+    transition: height 0.4s ease, background-color 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
 }
 
 .left-eye {
@@ -121,12 +121,13 @@ button {
 
 .monster-mouth { 
     position: absolute;
-    left: 73px;
-    bottom: 26px;
-    width: 24px;
-    height: 15px;
-    border: 4px solid #10202b;
-    border-radius: 50%;
+    left: 62px;
+    bottom: 27px;
+    width: 46px;
+    height: 18px;
+    border-top: 5px solid #10202b;
+    border-radius: 50% 50% 0 0;
+    transition: width 0.3s ease, height 0.3s ease, border-width 0.3s ease;
 }
 
 .sleep-text {
@@ -155,9 +156,63 @@ button {
 }
 
 .key {
-    padding: 10px 15px;
-    border: 2px solid gold;
-    color: gold;
+    position: relative;
+    width: 270px;
+    height: 62px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: transparent;
+    animation: keySparkles 1.8s ease-in-out infinite;
+}
+
+.key::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 54px;
+    height: 54px;
+    border: 9px solid #e5a900;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: inset 0 0 0 3px #ffd95c, 0 2px 3px rgba(101, 67, 0, 0.45);
+}
+
+.key::after {
+    content: "";
+    position: absolute;
+    left: 71px;
+    top: 21px;
+    width: 197px;
+    height: 24px;
+    background: linear-gradient(180deg, #fff19a 0%, #f5c518 45%, #c98e00 100%);
+    border-radius: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 58%, 181px 58%, 181px 100%, 163px 100%, 163px 58%, 139px 58%, 139px 100%, 121px 100%, 121px 58%, 0 58%);
+    filter: drop-shadow(0 2px 2px rgba(101, 67, 0, 0.45));
+}
+
+.key-wedge {
+    position: absolute;
+    left: 61.8px;
+    top: 20px;
+    width: 9px;
+    height: 18px;
+    background: linear-gradient(90deg, #f5c518 0%, #e5a900 100%);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    filter: drop-shadow(0 2px 1px rgba(101, 67, 0, 0.45));
+    transform: rotate(180deg);
+}
+
+@keyframes keySparkles {
+    0%, 100% {
+        filter: drop-shadow(0 0 1px rgba(245, 197, 24, 0.3));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 9px rgba(255, 245, 150, 0.95)) brightness(1.25);
+    }
 }
 
 .door {
@@ -273,6 +328,8 @@ button {
 .restless .monster-eye {
     height: 15px;
     background-color: #b6a85f;
+    border-bottom-width: 3px;
+    border-radius: 0 0 50% 50%;
 }
 
 .angry {
@@ -284,6 +341,13 @@ button {
     background-color: #d45b4d;
     border: 3px solid #10202b;
     border-radius: 50%;
+}
+
+.angry .monster-mouth {
+    left: 56px;
+    width: 58px;
+    height: 24px;
+    border-top-width: 7px;
 }
 
 .almost-awake {
