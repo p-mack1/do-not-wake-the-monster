@@ -136,7 +136,7 @@ doorBtn.addEventListener("click", function () {
     }
 
     if (!hasKey) {
-        message.textContent = "The door i slocked. You need the key!";
+        message.textContent = "The door is locked. You need the key!";
         increaseWake(15);
         return;
     }
